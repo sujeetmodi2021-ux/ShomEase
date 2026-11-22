@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Admin Dashboard</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+
+<body>
+
+    <!-- ================= 1. ADMIN LOGIN VIEW (ADMINCN MODERN SHADCN) ================= -->
+    <div id="adminLoginSection" class="admincn-login-wrapper" style="display: flex;">
+        <div class="admincn-login-card">
+            <!-- Brand Logo -->
+            <div class="admincn-brand-header">
+                <div class="brand-icon-box">
+                    <i class="fa-solid fa-shapes"></i>
+                </div>
+                <div class="brand-meta">
+                    <span class="brand-title">ShopEase</span>
+                    <span class="brand-tag">AdminCN</span>
+                </div>
+            </div>
+
+            <div class="login-heading-wrap">
+                <h2>Welcome back</h2>
+                <p>Enter your administrator credentials to access the store management console</p>
+            </div>
+
+            <div id="adminLoginAlert" style="display: none; padding: 0.75rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-bottom: 1.25rem;"></div>
+
+            <form id="adminConsoleLoginForm" class="admincn-login-form">
+                <div class="form-group-item">
+                    <label for="adminConsoleEmail">Email Address</label>
+                    <div class="input-with-icon">
+                        <i class="fa-regular fa-envelope input-icon"></i>
+                        <input type="email" id="adminConsoleEmail" required placeholder="name@example.com">
+                    </div>
+                </div>
+
+                <div class="form-group-item">
+                    <div class="label-row">
+                        <label for="adminConsolePassword">Password</label>
+                        <a href="#" class="forgot-link">Forgot password?</a>
+                    </div>
+                    <div class="input-with-icon">
+                        <i class="fa-solid fa-lock input-icon"></i>
+                        <input type="password" id="adminConsolePassword" required placeholder="••••••••">
+                    </div>
+                </div>
+
+                <button type="submit" id="adminConsoleSubmitBtn" class="btn-shadcn-submit">
+                    <span>Sign in to Dashboard</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+                <div class="return-store-wrap">
+                    <a href="index.html" class="link-storefront" target="_self">
+                        <i class="fa-solid fa-arrow-left"></i>
+                        <span>Return to Storefront</span>
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ================= 2. ADMIN DASHBOARD VIEW (ADMINCN SHADCN UI) ================= -->
+    <div id="adminDashboardSection" class="admincn-layout" style="display: none;">
+        
+        <!-- AdminCN Minimalist Dark/Light Sidebar -->
+        <aside class="admincn-sidebar" id="admincnSidebar">
+            <div class="sidebar-top">
+                <div class="sidebar-brand">
+                    <div class="brand-logo-badge">
+                        <i class="fa-solid fa-shapes"></i>
+                    </div>
+                    <div class="brand-text">
+                        <span class="name">ShopEase</span>
+                        <span class="subtitle">AdminCN Pro</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sidebar Navigation Groups -->
+            <div class="sidebar-body">
+                <div class="nav-section">
+                    <span class="nav-section-title">STORE MANAGEMENT</span>
+                    <nav class="nav-links-list">
+                        <button class="nav-tab active" data-tab="productsTab">
+                            <i class="fa-solid fa-box-open nav-icon"></i>
+                            <span class="nav-label">Products Inventory</span>
+                            <span class="nav-count-badge" id="sidebarProductBadge">0</span>
+                        </button>
+                        <button class="nav-tab" data-tab="ordersTab">
+                            <i class="fa-solid fa-receipt nav-icon"></i>
+                            <span class="nav-label">Orders & Billing</span>
+                            <span class="nav-count-badge" id="sidebarOrderBadge">0</span>
+                        </button>
+                    </nav>
+                </div>
+
+                <div class="nav-section">
+                    <span class="nav-section-title">QUICK ACCESS</span>
+                    <nav class="nav-links-list">
+                        <a href="index.html" class="nav-tab external-link" target="_self">
+                            <i class="fa-solid fa-store nav-icon"></i>
+                            <span class="nav-label">Live Customer Store</span>
+                        </a>
+                    </nav>
+                </div>
+            </div>
+
+            <!-- Sidebar User Profile Footer -->
+            <div class="sidebar-footer">
+                <div class="user-profile-badge">
+                    <div class="user-initials">SM</div>
+                    <div class="user-details">
+                        <span class="name">Sujit Modi</span>
+                        <span class="role">Store Administrator</span>
+                    </div>
+                </div>
+                <button class="btn-logout-icon" id="adminLogoutBtn" title="Sign Out">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Main Workspace -->
+        <div class="admincn-main-wrap">
+            
+            <!-- AdminCN Top Header Bar -->
+            <header class="admincn-header">
+                <div class="header-left">
+                    <button class="sidebar-toggle-btn" id="sidebarToggleBtn" title="Toggle Sidebar">
+                        <i class="fa-solid fa-bars-staggered"></i>
+                    </button>
+                    <div class="breadcrumb-trail">
+                        <span class="breadcrumb-root">Dashboard</span>
+                        <i class="fa-solid fa-chevron-right breadcrumb-separator"></i>
+                        <span class="breadcrumb-current" id="breadcrumbTitle">Products Inventory</span>
+                    </div>
+                </div>
+
+                <!-- Global Search -->
+                <div class="header-search">
+                    <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                    <input type="text" id="adminInventorySearch" placeholder="Search catalog, customer orders, SKU...">
+                    <span class="search-shortcut">⌘K</span>
+                </div>
+
+                <div class="header-right">
+                    <a href="index.html" target="_self" class="header-pill-btn" title="Open Storefront">
+                        <i class="fa-solid fa-store"></i>
+                        <span>Storefront</span>
+                    </a>
+                    <div class="header-icon-tool" title="Notifications">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="tool-dot"></span>
+                    </div>
+                    <div class="header-avatar">
+                        <span>A</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- AdminCN Content Area -->
+            <main class="admincn-main-content">
+                
+                <!-- Performance Statistics Cards (AdminCN StatisticsCard-01) -->
+                <section class="stat-cards-grid">
+                    <div class="admincn-stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Total Revenue</span>
+                            <div class="stat-icon-wrap icon-green">
+                                <i class="fa-solid fa-indian-rupee-sign"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statTotalRevenue">₹0</div>
+                        <div class="stat-footer">
+                            <span class="trend-badge positive">
+                                <i class="fa-solid fa-arrow-trend-up"></i> +14.8%
+                            </span>
+                            <span class="trend-context">total sales volume</span>
+                        </div>
+                    </div>
+
+                    <div class="admincn-stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Customer Orders</span>
+                            <div class="stat-icon-wrap icon-blue">
+                                <i class="fa-solid fa-truck-fast"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statTotalOrders">0</div>
+                        <div class="stat-footer">
+                            <span class="trend-badge neutral">
+                                <i class="fa-solid fa-check"></i> Fulfilled
+                            </span>
+                            <span class="trend-context">all orders processed</span>
+                        </div>
+                    </div>
+
+                    <div class="admincn-stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Active Products</span>
+                            <div class="stat-icon-wrap icon-purple">
+                                <i class="fa-solid fa-boxes-stacked"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statTotalProducts">0</div>
+                        <div class="stat-footer">
+                            <span class="trend-badge positive">
+                                <i class="fa-solid fa-circle-check"></i> Live
+                            </span>
+                            <span class="trend-context">active in storefront</span>
+                        </div>
+                    </div>
+
+                    <div class="admincn-stat-card">
+                        <div class="stat-header">
+                            <span class="stat-title">Average Order Value</span>
+                            <div class="stat-icon-wrap icon-amber">
+                                <i class="fa-solid fa-chart-pie"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="statAvgOrder">₹0</div>
+                        <div class="stat-footer">
+                            <span class="trend-badge positive">
+                                <i class="fa-solid fa-arrow-trend-up"></i> Healthy
+                            </span>
+                            <span class="trend-context">per transaction</span>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 1: PRODUCT MANAGEMENT -->
+                <section class="tab-pane active" id="productsTab">
+                    <div class="admincn-panel">
+                        <!-- Toolbar -->
+                        <div class="panel-header-row">
+                            <div class="header-text-block">
+                                <h2>Product Inventory</h2>
+                                <p>Manage, add, update, and upload device images for products in your store</p>
+                            </div>
+                            <button class="btn-shadcn-primary" id="openAddProductModalBtn">
+                                <i class="fa-solid fa-plus"></i>
+                                <span>Add New Product</span>
+                            </button>
+                        </div>
+
+                        <!-- Category Filter Chips -->
+                        <div class="filter-toolbar">
+                            <div class="category-chips-list" id="amzCategoryChips">
+                                <button type="button" class="category-chip active" data-cat="all">All Items</button>
+                                <button type="button" class="category-chip" data-cat="electronics">Electronics</button>
+                                <button type="button" class="category-chip" data-cat="fashion">Fashion</button>
+                                <button type="button" class="category-chip" data-cat="footwear">Footwear</button>
+                                <button type="button" class="category-chip" data-cat="accessories">Accessories</button>
+                            </div>
+                            <span class="catalog-counter-text" id="amzCatalogCount">Showing products</span>
+                        </div>
+
+                        <!-- Products Cards Grid with Hover Actions -->
+                        <div class="admin-products-grid admincn-products-grid" id="adminProductsContainer">
+                            <!-- Dynamic Product Cards rendered via js/admin.js -->
+                        </div>
+                    </div>
+                </section>
+
+                <!-- TAB 2: ORDERS & CUSTOMER BILLING -->
+                <section class="tab-pane" id="ordersTab">
+                    <div class="admincn-panel">
+                        <div class="panel-header-row">
+                            <div class="header-text-block">
+                                <h2>Customer Orders & Billing</h2>
+                                <p>Review customer orders placed online and via WhatsApp checkout</p>
+                            </div>
+                            <button class="btn-shadcn-outline danger" id="clearAllOrdersBtn">
+                                <i class="fa-solid fa-trash"></i>
+                                <span>Clear Orders History</span>
+                            </button>
+                        </div>
+
+                        <div class="table-responsive admincn-table-wrap">
+                            <table class="admincn-datatable">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Customer</th>
+                                        <th>Contact</th>
+                                        <th>Shipping Address</th>
+                                        <th>Ordered Items</th>
+                                        <th>Total Paid</th>
+                                        <th>Status</th>
+                                        <th>Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="adminOrdersTable">
+                                    <!-- Rendered via js/admin.js -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+            </main>
+        </div>
+    </div>
+
+    <!-- ADD / EDIT PRODUCT POPUP MODAL -->
+    <div class="modal" id="addProductModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="modalTitle">Add New Product to Store</h3>
+                <button class="close-btn" id="closeAddProductModalBtn">&times;</button>
+            </div>
+            <form id="addProductForm" class="checkout-form">
+                <input type="hidden" id="editProdId" value="">
+
+                <div class="form-group">
+                    <label for="prodName">Product Name *</label>
+                    <input type="text" id="prodName" required placeholder="e.g. Wireless Gaming Mouse">
+                </div>
+                <div class="form-group">
+                    <label for="prodCategory">Category *</label>
+                    <select id="prodCategory" required>
+                        <option value="electronics">Electronics</option>
+                        <option value="fashion">Fashion</option>
+                        <option value="footwear">Footwear</option>
+                        <option value="accessories">Accessories</option>
+                    </select>
+                </div>
+                <div class="form-group" style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem;">
+                    <div>
+                        <label for="prodPrice">Selling Price (₹) *</label>
+                        <input type="number" id="prodPrice" required placeholder="1499">
+                    </div>
+                    <div>
+                        <label for="prodOriginalPrice">MRP (₹) *</label>
+                        <input type="number" id="prodOriginalPrice" required placeholder="2499">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Product Image *</label>
+                    
+                    <!-- Image Selection Mode Tabs -->
+                    <div class="image-mode-tabs">
+                        <button type="button" class="mode-tab-btn active" id="tabUploadImage">
+                            <i class="fa-solid fa-cloud-arrow-up"></i> Choose from Computer
+                        </button>
+                        <button type="button" class="mode-tab-btn" id="tabUrlImage">
+                            <i class="fa-solid fa-link"></i> Paste Image Link
+                        </button>
+                    </div>
+
+                    <!-- Panel 1: Device File Upload / Image Selector -->
+                    <div class="image-selector-panel" id="panelUploadImage">
+                        <div class="file-drop-zone" id="fileDropZone">
+                            <input type="file" id="prodImageFileInput" accept="image/*" style="display: none;">
+                            <div class="drop-zone-content">
+                                <i class="fa-solid fa-image drop-zone-icon"></i>
+                                <span class="drop-zone-text">Click or Drag & Drop to Select an Image</span>
+                                <span class="drop-zone-sub">PNG, JPG, JPEG, WEBP or GIF</span>
+                                <button type="button" class="btn btn-sm btn-outline choose-file-btn" id="browseFileBtn">
+                                    <i class="fa-solid fa-folder-open"></i> Browse Files
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Panel 2: Web Image Link Input -->
+                    <div class="image-selector-panel" id="panelUrlImage" style="display: none;">
+                        <input type="text" id="prodImageUrlInput" placeholder="https://images.unsplash.com/photo-...">
+                    </div>
+
+                    <!-- Form Payload Input (URL or Base64 Image) -->
+                    <input type="text" id="prodImage" required style="display: none;">
+
+                    <!-- Selected Image Live Preview -->
+                    <div class="image-preview-wrapper" id="imagePreviewWrapper">
+                        <div class="preview-header">
+                            <span class="preview-label"><i class="fa-solid fa-eye"></i> Selected Image Preview</span>
+                            <div class="preview-actions">
+                                <span class="preview-status" id="previewStatus">No Image</span>
+                                <button type="button" class="btn-clear-preview" id="btnClearImage" title="Clear Image" style="display: none;">
+                                    <i class="fa-solid fa-xmark"></i> Remove
+                                </button>
+                            </div>
+                        </div>
+                        <div class="image-preview-box">
+                            <img id="prodImagePreview" src="" alt="Selected Product Preview" style="display: none;">
+                            <div class="image-preview-placeholder" id="imagePreviewPlaceholder">
+                                <i class="fa-regular fa-image"></i>
+                                <span>No image selected yet</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="prodDesc">Short Description</label>
+                    <textarea id="prodDesc" rows="2" placeholder="Product details..."></textarea>
+                </div>
+                <button type="submit" id="modalSubmitBtn" class="btn btn-primary btn-block">Save & Publish to Store</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+    <script src="js/products.js"></script>
+    <script src="js/admin.js"></script>
+
+    <!-- Unified Admin View Controller -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const loginSection = document.getElementById('adminLoginSection');
+            const dashboardSection = document.getElementById('adminDashboardSection');
+            const loginForm = document.getElementById('adminConsoleLoginForm');
+            const alertBox = document.getElementById('adminLoginAlert');
+            const logoutBtn = document.getElementById('adminLogoutBtn');
+
+            // Force login if URL has auth=required or login=1
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('auth') === 'required' || urlParams.has('login')) {
+                sessionStorage.removeItem('shopease_admin_unlocked');
+            }
+
+            function isDashboardUnlocked() {
+                // Must be explicitly unlocked in this session AND role must be admin
+                return sessionStorage.getItem('shopease_admin_unlocked') === 'true' && Auth.isAdmin();
+            }
+
+            function showAdminView() {
+                if (isDashboardUnlocked()) {
+                    loginSection.style.display = 'none';
+                    dashboardSection.style.display = 'flex';
+                    if (typeof renderDashboard === 'function') {
+                        renderDashboard();
+                    }
+                } else {
+                    loginSection.style.display = 'flex';
+                    dashboardSection.style.display = 'none';
+
+                    // Reset input fields completely
+                    const emailInput = document.getElementById('adminConsoleEmail');
+                    const passInput = document.getElementById('adminConsolePassword');
+                    if (emailInput) emailInput.value = '';
+                    if (passInput) passInput.value = '';
+                }
+            }
+
+            // Initial view check
+            showAdminView();
+
+            // Handle Embedded Login Form Submit
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                const email = document.getElementById('adminConsoleEmail').value.trim();
+                const pass = document.getElementById('adminConsolePassword').value;
+
+                alertBox.style.display = 'none';
+
+                const res = await Auth.login(email, pass);
+
+                if (res.success && res.role === 'admin') {
+                    // Mark as unlocked for this session
+                    sessionStorage.setItem('shopease_admin_unlocked', 'true');
+
+                    // Clean URL query params without reload
+                    if (window.history && window.history.replaceState) {
+                        window.history.replaceState({}, document.title, window.location.pathname);
+                    }
+
+                    showAdminView();
+                } else if (res.success && res.role !== 'admin') {
+                    alertBox.textContent = "Access Denied: This account does not have Admin privileges!";
+                    alertBox.style.display = 'block';
+                    alertBox.style.background = 'rgba(239, 68, 68, 0.2)';
+                    alertBox.style.color = '#f87171';
+                    alertBox.style.border = '1px solid rgba(248, 113, 113, 0.3)';
+                } else {
+                    alertBox.textContent = res.message || "Invalid Admin credentials!";
+                    alertBox.style.display = 'block';
+                    alertBox.style.background = 'rgba(239, 68, 68, 0.2)';
+                    alertBox.style.color = '#f87171';
+                    alertBox.style.border = '1px solid rgba(248, 113, 113, 0.3)';
+                }
+            });
+
+            // Handle Logout
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', () => {
+                    sessionStorage.removeItem('shopease_admin_unlocked');
+                    localStorage.removeItem('shopease_current_user');
+                    showAdminView();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>

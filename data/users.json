@@ -1,0 +1,25 @@
+[
+  {
+    "id": 1,
+    "name": "Store Admin",
+    "email": "admin@shopease.com",
+    "password": "admin123",
+    "role": "admin"
+  },
+  {
+    "id": 1793452023487,
+    "name": "Sujit Modi",
+    "email": "sujitmodi2021@gmail.com",
+    "phone": "8827907935",
+    "password": "Modi@123",
+    "role": "admin"
+  },
+  {
+    "id": 1793452515730,
+    "name": "jatin",
+    "email": "jatinmodi06@gmail.com",
+    "phone": "8989850675",
+    "password": "Jatin@9090",
+    "role": "admin"
+  }
+]

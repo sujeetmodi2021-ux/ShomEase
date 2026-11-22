@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopEase - Login / Sign Up</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/login.css">
+</head>
+
+<body class="auth-body">
+
+    <div class="auth-container">
+        <div class="auth-card">
+            <!-- Brand Logo -->
+            <a href="index.html" class="logo auth-logo">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span>Shop<span>Ease</span></span>
+            </a>
+
+            <!-- Tabs Toggle (Sign In / Register) -->
+            <div class="auth-tabs">
+                <button class="tab-btn active" id="tabLoginBtn">Sign In</button>
+                <button class="tab-btn" id="tabRegisterBtn">Create Account</button>
+            </div>
+
+            <!-- Alert Message Box -->
+            <div class="auth-alert" id="authAlert" style="display: none;"></div>
+
+            <!-- 1. SIGN IN FORM -->
+            <form id="loginForm" class="auth-form">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input type="email" id="loginEmail" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required placeholder="••••••••">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+            </form>
+
+            <!-- 2. REGISTER FORM -->
+            <form id="registerForm" class="auth-form" style="display: none;">
+                <div class="form-group">
+                    <label for="regName">Full Name</label>
+                    <input type="text" id="regName" required placeholder="e.g. Rahul Sharma">
+                </div>
+                <div class="form-group">
+                    <label for="regEmail">Email Address</label>
+                    <input type="email" id="regEmail" required placeholder="name@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="regPhone">Mobile Number</label>
+                    <input type="tel" id="regPhone" required placeholder="9876543210" pattern="[0-9]{10}">
+                </div>
+                <div class="form-group">
+                    <label for="regPassword">Password</label>
+                    <input type="password" id="regPassword" required placeholder="At least 6 characters" minlength="6">
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block">Create My Account</button>
+            </form>
+
+            <div class="auth-footer">
+                <a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Storefront</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/auth.js"></script>
+</body>
+
+</html>

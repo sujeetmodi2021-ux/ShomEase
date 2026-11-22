@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShopEase - Modern E-Commerce Store</title>
+
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ================= HEADER / NAVBAR ================= -->
+  <header class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span>Shop<span>Ease</span></span>
+      </a>
+
+      <!-- Desktop Search Bar with Keywords Dropdown -->
+      <div class="search-box" id="desktopSearchBox">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input type="text" id="searchInput" placeholder="Search for headphones, shoes, watch, sandals..." autocomplete="off">
+        <div class="search-suggestions-dropdown" id="desktopSearchSuggestions" style="display: none;">
+          <div class="suggestions-section-title">
+            <i class="fa-solid fa-fire" style="color: #f97316;"></i>
+            <span>Popular Product Keywords</span>
+          </div>
+          <div class="suggestions-chips-wrap">
+            <button type="button" class="search-keyword-chip" data-keyword="Headphones"><i class="fa-solid fa-headphones"></i> Headphones</button>
+            <button type="button" class="search-keyword-chip" data-keyword="Smartwatch"><i class="fa-solid fa-clock"></i> Smartwatch</button>
+            <button type="button" class="search-keyword-chip" data-keyword="Sandals"><i class="fa-solid fa-shoe-prints"></i> Sandals</button>
+            <button type="button" class="search-keyword-chip" data-keyword="Heels"><i class="fa-solid fa-gem"></i> Heels</button>
+            <button type="button" class="search-keyword-chip" data-keyword="Running Shoes"><i class="fa-solid fa-person-running"></i> Shoes</button>
+            <button type="button" class="search-keyword-chip" data-keyword="Denim Jacket"><i class="fa-solid fa-shirt"></i> Denim Jacket</button>
+            <button type="button" class="search-keyword-chip" data-keyword="Hoodie"><i class="fa-solid fa-vest"></i> Hoodie</button>
+            <button type="button" class="search-keyword-chip" data-keyword="Sunglasses"><i class="fa-solid fa-glasses"></i> Sunglasses</button>
+            <button type="button" class="search-keyword-chip" data-keyword="Backpack"><i class="fa-solid fa-bag-shopping"></i> Backpack</button>
+          </div>
+          <div class="suggestions-results-list" id="desktopSuggestionsList"></div>
+        </div>
+      </div>
+
+      <!-- Action Buttons -->
+      <div class="nav-actions">
+        <!-- Mobile Search Toggle Button (Shows on mobile only) -->
+        <button class="nav-icon-btn mobile-search-toggle" id="mobileSearchToggleBtn" aria-label="Search" title="Search">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+
+        <!-- User Navigation Section -->
+        <div id="userNavSection">
+          <a href="login.html" class="btn btn-outline user-nav-btn">
+            <i class="fa-solid fa-user"></i> <span id="userNavText">Login</span>
+          </a>
+        </div>
+
+        <!-- Cart Button -->
+        <button class="nav-icon-btn cart-nav-btn" id="cartToggleBtn" aria-label="Open Cart" title="View Cart">
+          <i class="fa-solid fa-cart-shopping"></i>
+          <span class="badge" id="cartCount">0</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Search Expandable Bar with Popular Keywords -->
+    <div class="mobile-search-bar" id="mobileSearchBar">
+      <div class="mobile-search-inner">
+        <i class="fa-solid fa-magnifying-glass mobile-search-icon"></i>
+        <input type="text" id="mobileSearchInput" placeholder="Search headphones, shoes, watch, sandals..." autocomplete="off">
+        <button type="button" class="mobile-search-close" id="mobileSearchCloseBtn" aria-label="Close Search">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+      <!-- Mobile Quick Keyword Chips -->
+      <div class="mobile-keywords-bar">
+        <span class="mobile-kw-label"><i class="fa-solid fa-fire" style="color: #f97316;"></i> Keywords:</span>
+        <div class="mobile-kw-chips-scroll">
+          <button type="button" class="search-keyword-chip" data-keyword="Headphones">Headphones</button>
+          <button type="button" class="search-keyword-chip" data-keyword="Smartwatch">Smartwatch</button>
+          <button type="button" class="search-keyword-chip" data-keyword="Sandals">Sandals</button>
+          <button type="button" class="search-keyword-chip" data-keyword="Heels">Heels</button>
+          <button type="button" class="search-keyword-chip" data-keyword="Running Shoes">Shoes</button>
+          <button type="button" class="search-keyword-chip" data-keyword="Denim Jacket">Jacket</button>
+          <button type="button" class="search-keyword-chip" data-keyword="Hoodie">Hoodie</button>
+          <button type="button" class="search-keyword-chip" data-keyword="Sunglasses">Sunglasses</button>
+          <button type="button" class="search-keyword-chip" data-keyword="Backpack">Backpack</button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ================= HERO PROMO BANNER ================= -->
+  <section class="hero-banner">
+    <div class="hero-content">
+      <span class="hero-tag">Special Festive Deal 🌟</span>
+      <h1>Upgrade Your Lifestyle With Top Tech & Fashion</h1>
+      <p>Flat 10% off on all prepaid orders using coupon code <strong>SAVE10</strong></p>
+      <a href="#products-section" class="btn btn-primary">Shop Now</a>
+    </div>
+  </section>
+
+  <!-- ================= MAIN CONTENT ================= -->
+  <main class="main-container" id="products-section">
+    <!-- Category & Filter Bar -->
+    <div class="filter-controls">
+      <div class="categories" id="categoryChips">
+        <button class="category-btn active" data-category="all">All Items</button>
+        <button class="category-btn" data-category="electronics">Electronics</button>
+        <button class="category-btn" data-category="fashion">Fashion</button>
+        <button class="category-btn" data-category="footwear">Footwear</button>
+        <button class="category-btn" data-category="accessories">Accessories</button>
+      </div>
+
+      <div class="sort-box">
+        <label for="sortSelect">Sort By:</label>
+        <select id="sortSelect">
+          <option value="featured">Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="rating">Customer Rating</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Product Grid -->
+    <section>
+      <div class="product-grid" id="productGrid">
+        <!-- Products will be injected dynamically via js/ui.js -->
+      </div>
+      <div class="no-products" id="noProducts" style="display: none;">
+        <i class="fa-solid fa-box-open"></i>
+        <h3>No Products Found</h3>
+        <p>Try searching with another keyword or category filter.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ================= SHOPPING CART DRAWER ================= -->
+  <div class="drawer-overlay" id="drawerOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer">
+    <div class="cart-header">
+      <h2>Your Cart (<span id="cartDrawerCount">0</span>)</h2>
+      <button class="close-btn" id="closeCartBtn">&times;</button>
+    </div>
+
+    <!-- Cart Items List -->
+    <div class="cart-items" id="cartItemsContainer">
+      <!-- Injected via js/ui.js -->
+    </div>
+
+    <!-- Empty Cart View -->
+    <div class="cart-empty" id="cartEmptyView" style="display: none;">
+      <i class="fa-solid fa-cart-arrow-down"></i>
+      <p>Your shopping cart is empty!</p>
+      <button class="btn btn-secondary" id="startShoppingBtn">Start Shopping</button>
+    </div>
+
+    <!-- Cart Footer & Summary -->
+    <div class="cart-footer" id="cartFooter">
+      <!-- Coupon Section -->
+      <div class="coupon-box">
+        <input type="text" id="couponInput" placeholder="Enter coupon (e.g. SAVE10)">
+        <button id="applyCouponBtn" class="btn btn-outline">Apply</button>
+      </div>
+      <div class="coupon-message" id="couponMessage"></div>
+
+      <!-- Pricing Summary -->
+      <div class="cart-summary">
+        <div class="summary-row">
+          <span>Subtotal</span>
+          <span id="subtotalPrice">₹0</span>
+        </div>
+        <div class="summary-row" id="discountRow" style="display: none;">
+          <span>Discount</span>
+          <span id="discountPrice" class="text-success">-₹0</span>
+        </div>
+        <div class="summary-row">
+          <span>Delivery Charge</span>
+          <span class="text-success">FREE</span>
+        </div>
+        <div class="summary-row total-row">
+          <span>Total Amount</span>
+          <span id="totalPrice">₹0</span>
+        </div>
+      </div>
+
+      <button class="btn btn-primary btn-block" id="proceedCheckoutBtn">
+        Proceed to Checkout <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- ================= CHECKOUT MODAL ================= -->
+  <div class="modal" id="checkoutModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>Complete Your Order</h3>
+        <button class="close-btn" id="closeCheckoutBtn">&times;</button>
+      </div>
+      <form id="checkoutForm" class="checkout-form">
+        <div class="form-group">
+          <label for="custName">Full Name *</label>
+          <input type="text" id="custName" required placeholder="e.g. Rahul Sharma">
+        </div>
+        <div class="form-group">
+          <label for="custPhone">Mobile Number *</label>
+          <input type="tel" id="custPhone" required placeholder="e.g. 9876543210" pattern="[0-9]{10}">
+        </div>
+        <div class="form-group">
+          <label for="custAddress">Shipping Address *</label>
+          <textarea id="custAddress" rows="3" required
+            placeholder="House number, Street, Landmark, City, Pincode"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Payment Method</label>
+          <div class="payment-options">
+            <label class="radio-card">
+              <input type="radio" name="payment" value="UPI / QR Code" checked>
+              <span><i class="fa-brands fa-google-pay"></i> UPI / Online</span>
+            </label>
+            <label class="radio-card">
+              <input type="radio" name="payment" value="Cash on Delivery">
+              <span><i class="fa-solid fa-money-bill-wave"></i> Cash on Delivery</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="checkout-total-box">
+          <span>Total Payable:</span>
+          <strong id="checkoutFinalTotal">₹0</strong>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Place Order Now</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ================= ORDER SUCCESS MODAL ================= -->
+  <div class="modal" id="orderSuccessModal">
+    <div class="modal-content text-center">
+      <div class="success-icon">
+        <i class="fa-solid fa-circle-check"></i>
+      </div>
+      <h2>Order Placed Successfully!</h2>
+      <p>Thank you for shopping with ShopEase. Your order id is <strong id="orderIdText">#ORD-0000</strong>.</p>
+      <p class="order-subtext">A confirmation message has been sent to your mobile number.</p>
+      <button class="btn btn-primary" id="continueShoppingBtn">Continue Shopping</button>
+    </div>
+  </div>
+
+  <!-- ================= QUICK VIEW PRODUCT MODAL ================= -->
+  <div class="modal" id="quickViewModal">
+    <div class="modal-content modal-lg">
+      <button class="close-btn modal-close" id="closeQuickViewBtn">&times;</button>
+      <div class="quick-view-body" id="quickViewContent">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MY ORDERS MODAL ================= -->
+  <div class="modal" id="myOrdersModal">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-box-open" style="color:var(--primary);"></i> My Orders</h3>
+        <button class="close-btn" id="closeMyOrdersBtn">&times;</button>
+      </div>
+      <div class="order-history-list" id="customerOrdersContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= MY ACCOUNT / PROFILE MODAL ================= -->
+  <div class="modal" id="myProfileModal">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3><i class="fa-solid fa-circle-user" style="color:var(--primary);"></i> My Account Details</h3>
+        <button class="close-btn" id="closeMyProfileBtn">&times;</button>
+      </div>
+      <form id="profileUpdateForm" class="checkout-form">
+        <div class="form-group">
+          <label for="profName">Full Name *</label>
+          <input type="text" id="profName" required placeholder="Your name">
+        </div>
+        <div class="form-group">
+          <label for="profEmail">Email Address (Login ID)</label>
+          <input type="email" id="profEmail" readonly style="background:var(--bg-subtle); cursor:not-allowed;">
+        </div>
+        <div class="form-group">
+          <label for="profPhone">Mobile Number *</label>
+          <input type="tel" id="profPhone" required pattern="[0-9]{10}" placeholder="10 digit number">
+        </div>
+        <div class="form-group">
+          <label for="profAddress">Default Delivery Address</label>
+          <textarea id="profAddress" rows="3" placeholder="House number, street, city, landmark, pincode..."></textarea>
+        </div>
+        <div class="form-group">
+          <label>Account Role</label>
+          <input type="text" id="profRole" readonly style="background:var(--bg-subtle); cursor:not-allowed; text-transform:capitalize;">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">Save Profile Changes</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col">
+        <h3><i class="fa-solid fa-bag-shopping"></i> ShopEase</h3>
+        <p>Your one-stop destination for tech, fashion, and lifestyle essentials.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="admin.html?auth=required" target="_self" onclick="sessionStorage.removeItem('shopease_admin_unlocked');"><i class="fa-solid fa-shield-halved"></i> Admin Portal</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Customer Support</h4>
+        <p><i class="fa-solid fa-envelope"></i> support@shopease.com</p>
+        <p><i class="fa-solid fa-phone"></i> +91 1800-123-4567</p>
+        <p><i class="fa-solid fa-location-dot"></i> New Delhi, India</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 ShopEase E-Commerce Store. Built with clean HTML, CSS & Vanilla JavaScript.</p>
+    </div>
+  </footer>
+
+  <!-- ================= SCRIPTS ================= -->
+  <!-- Auth & Session Manager -->
+  <script src="js/auth.js"></script>
+  <!-- 1. Product Database -->
+  <script src="js/products.js"></script>
+  <!-- 2. Cart Business Logic & State -->
+  <script src="js/cart.js"></script>
+  <!-- 3. UI Renderer & Modals -->
+  <script src="js/ui.js"></script>
+  <!-- 4. Main App Controller -->
+  <script src="js/app.js"></script>
+
+  <!-- Navbar Auth State Check & Auto Fill -->
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const curUser = Auth.getCurrentUser();
+      const userNav = document.getElementById('userNavSection');
+      if (curUser && userNav) {
+        userNav.innerHTML = `
+          <div class="user-dropdown-wrapper">
+            <button class="user-pill-btn" id="userMenuToggleBtn" type="button">
+              <i class="fa-solid fa-circle-user" style="color:var(--primary); font-size:1.15rem;"></i>
+              <span>Hi, ${curUser.name.split(' ')[0]}</span>
+              <i class="fa-solid fa-chevron-down" style="font-size:0.75rem; color:var(--text-muted); margin-left:3px;"></i>
+            </button>
+            <div class="user-dropdown-menu" id="userDropdownMenu">
+              <button class="dropdown-item" onclick="openCustomerProfileModal()">
+                <i class="fa-solid fa-user-pen" style="color:var(--primary);"></i> My Account
+              </button>
+              <button class="dropdown-item" onclick="openCustomerOrdersModal()">
+                <i class="fa-solid fa-box-open" style="color:var(--accent);"></i> My Orders
+              </button>
+              ${Auth.isAdmin() ? `
+                <a href="admin.html?auth=required" target="_self" onclick="sessionStorage.removeItem('shopease_admin_unlocked');" class="dropdown-item" style="color:var(--primary); font-weight:600;">
+                  <i class="fa-solid fa-gauge-high"></i> Admin Dashboard
+                </a>
+              ` : ''}
+              <div class="dropdown-divider"></div>
+              <button class="dropdown-item text-danger" onclick="Auth.logout()">
+                <i class="fa-solid fa-right-from-bracket"></i> Logout
+              </button>
+            </div>
+          </div>
+        `;
+
+        // Pre-fill Checkout fields if logged in
+        const nameField = document.getElementById('custName');
+        const phoneField = document.getElementById('custPhone');
+        const addressField = document.getElementById('custAddress');
+        if (nameField && curUser.name) nameField.value = curUser.name;
+        if (phoneField && curUser.phone) phoneField.value = curUser.phone;
+        if (addressField && curUser.address) addressField.value = curUser.address;
+
+        // Dropdown toggle
+        const toggleBtn = document.getElementById('userMenuToggleBtn');
+        const menu = document.getElementById('userDropdownMenu');
+        if (toggleBtn && menu) {
+          toggleBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            menu.classList.toggle('active');
+          });
+          document.addEventListener('click', () => menu.classList.remove('active'));
+        }
+      }
+    });
+  </script>
+
+  <!-- Floating WhatsApp Support Button -->
+  <a href="https://wa.me/919876543210?text=Hello%20ShopEase!%20Mujhe%20ek%20product%20ke%20bare%20me%20puchna%20hai."
+    class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="Chat on WhatsApp">
+    <i class="fa-brands fa-whatsapp"></i>
+  </a>
+</body>
+
+</html>
